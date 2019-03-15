@@ -1,0 +1,21 @@
+{
+  "name": "unit_converter",
+  "version": "1.0.0",
+  "description": "imperial-metric converter",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Jeff Bloom",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "helmet": "^3.14.0",
+    "nodemon": "^1.18.10",
+    "path": "^0.12.7"
+  }
+}
