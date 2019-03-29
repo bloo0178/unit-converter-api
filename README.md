@@ -9,7 +9,6 @@ The front end of this app was built using React. The back end was built using Ja
     http://192.168.1.10:5000/api/convert?input=4gal
 2. Start server.js (5000) - nodemon start or npm start
 
-
-
 Sample serverless API endpoint: 
 https://831vuq5mha.execute-api.us-east-1.amazonaws.com/dev/?input=4gal
+
