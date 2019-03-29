@@ -1,24 +1,29 @@
 const serverless = require("serverless-http");
+const bodyParser = require("body-parser");
 const express = require("express");
-const cors = require("cors");
-const convertHandler = require("./controllers/convertHandler");
-//const app = express();
-const app = express().use("*", cors());
+const ConvertHandler = require("./controllers/convertHandler");
+const app = express();
 
-const convertHandler = new convertHandler();
+const convert = new ConvertHandler();
 
-app.route("/api/convert").get(function(req, res) {
-  var input = req.query.input;
-  var initNum = convertHandler.getNum(input);
-  var initUnit = convertHandler.getUnit(input);
-  var returnNum = convertHandler.convert(initNum, initUnit);
-  var returnUnit = convertHandler.getReturnUnit(initUnit);
-  var toString = convertHandler.getString(
-    initNum,
-    initUnit,
-    returnNum,
-    returnUnit
+app.use(bodyParser.json({ strict: false }));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
   );
+  next();
+});
+
+app.get("/", function(req, res) {
+  var input = req.query.input;
+  var initNum = convert.getNum(input);
+  var initUnit = convert.getUnit(input);
+  var returnNum = convert.convert(initNum, initUnit);
+  var returnUnit = convert.getReturnUnit(initUnit);
+  var toString = convert.getString(initNum, initUnit, returnNum, returnUnit);
 
   if (initNum == "invalid" && initUnit == "invalid") {
     res.json("invalid number and unit");
